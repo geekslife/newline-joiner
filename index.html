@@ -1,0 +1,63 @@
+<html>
+<head>
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<table width="100%">
+  <tr width="100%">
+    <td>
+        <textarea id="src" style="width:100%" rows="48"></textarea></td>
+    <td>
+        <textarea id="dst" style="width:100%" rows="48"></textarea></td>
+  </tr>
+</table>
+<script>
+$(document).ready(function() {
+    var beautify = function() {
+        var srcText = $('#src').val()
+        var srcTextList = srcText.split("\n");
+        var dstTextList = [];
+        var str = "";
+        var hypenated = false;
+        for ( var i=0; i<srcTextList.length; i++ ) {
+            if (hypenated) {
+                hypenated = false;
+            } else if (str !== "") {
+                str += " ";
+            }
+
+            var line = srcTextList[i].trim();
+            if (line.match( /[a-zA-Z]-/ )) {
+                hypenated = true;
+                line = line.substring(0,line.length-1);
+            }
+
+            str += line;
+
+            if (line.endsWith(".")) {
+                dstTextList = dstTextList.concat(str);
+                str = "";
+            } else if (line == "") {
+                dstTextList = dstTextList.concat(str);
+                dstTextList = dstTextList.concat("");
+                str = "";
+            }
+        }
+
+        str = "";
+        for ( var i=0; i<dstTextList.length; i++ ) {
+            str += dstTextList[i]+"\n";
+        }
+        $('#dst').val( str.trim() );
+    };
+
+    $('#src').change(function() {
+        beautify();
+    });
+});
+</script>
+</body>
+</html>
