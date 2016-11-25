@@ -1,6 +1,6 @@
 # 실행해보기
 
-![CDN](https://cdn.rawgit.com/geekslife/newline-joiner/master/index.html "cdn")
+[https://cdn.rawgit.com/geekslife/newline-joiner/master/index.html](https://cdn.rawgit.com/geekslife/newline-joiner/master/index.html)
 
 
 # 이게 뭐임?
