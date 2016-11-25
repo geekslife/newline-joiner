@@ -30,7 +30,7 @@ $(document).ready(function() {
             }
 
             var line = srcTextList[i].trim();
-            if (line.match( /[a-zA-Z]-/ )) {
+            if (line.match( /[a-zA-Z]-$/ )) {
                 hypenated = true;
                 line = line.substring(0,line.length-1);
             }
@@ -46,6 +46,9 @@ $(document).ready(function() {
                 str = "";
             }
         }
+        if (str != "") {
+            dstTextList = dstTextList.concat(str);
+        }
 
         str = "";
         for ( var i=0; i<dstTextList.length; i++ ) {
@@ -54,7 +57,7 @@ $(document).ready(function() {
         $('#dst').val( str.trim() );
     };
 
-    $('#src').change(function() {
+    $('#src').bind('input propertychange', function() {
         beautify();
     });
 });
